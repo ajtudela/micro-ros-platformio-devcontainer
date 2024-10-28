@@ -1,0 +1,32 @@
+{
+    "name": "micro-ROS + PlatformIO Devcontainer",
+    "privileged": true,
+    "remoteUser": "vscode",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "USERNAME": "vscode"
+        }
+    },
+    "workspaceFolder": "/home/vscode/Documents/PlatformIO/Projects",
+    "workspaceMount": "source=${localWorkspaceFolder}/projects,target=${containerWorkspaceFolder},type=bind",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "platformio-ide.pioHomeServerHttpPort": 8008
+            },
+            "extensions": [
+                "platformio.platformio-ide"
+            ]
+        }
+    },
+    "containerEnv": {
+        "ROS_DOMAIN_ID": "42"
+    },
+    "forwardPorts": [
+        8008
+    ],
+    "mounts": [
+        "source=/dev/bus/usb,target=/dev/bus/usb,type=bind"
+    ]
+}

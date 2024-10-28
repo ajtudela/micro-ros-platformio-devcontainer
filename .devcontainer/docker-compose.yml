@@ -1,0 +1,33 @@
+services:
+  base:
+    image: microros/base:humble
+    network_mode: host
+    privileged: true
+    stdin_open: true
+    tty: true
+    environment:
+      - ROS_DOMAIN_ID=42
+    volumes:
+      - ../..:/workspaces:cached
+
+  serial-agent:
+    image: microros/micro-ros-agent:humble
+    network_mode: host
+    privileged: true
+    tty: true
+    environment:
+      - ROS_DOMAIN_ID=42
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    command: serial --dev /dev/ttyUSB0
+    restart: unless-stopped
+
+  udp-agent:
+    image: microros/micro-ros-agent:humble
+    network_mode: host
+    privileged: true
+    tty: true
+    environment:
+      - ROS_DOMAIN_ID=42
+    command: udp4 --port 9999
+    restart: unless-stopped
