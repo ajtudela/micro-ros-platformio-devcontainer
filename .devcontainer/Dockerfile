@@ -1,4 +1,4 @@
-FROM microros/base:humble
+FROM microros/base:rolling
 ARG USERNAME=USERNAME
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -22,6 +22,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # Install required packages
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get upgrade -y && apt-get -y install --no-install-recommends \
+    curl \
     ssh \
     udev \
     python3-pip \
@@ -29,7 +30,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get -y install --no-install-reco
 
 # Setup udev rules for PlatformIO
 RUN curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
-RUN service udev restart
 RUN usermod -a -G dialout $USERNAME
 RUN usermod -a -G plugdev $USERNAME
 
