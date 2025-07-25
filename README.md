@@ -15,6 +15,7 @@ This repository provides a [VSCode devcontainer](https://code.visualstudio.com/d
 > [!NOTE]
 > - The default `ROS_DOMAIN_ID` is set to `42`. You can adjust this value in both the `docker-compose.yml` and `devcontainer.json` files as needed.
 > - By default, the internal user within the container is set to `vscode`. This can be modified if a different user setup is preferred.
+> - To connect your development board, you may need to modify the port mounting configuration in `devcontainer.json`, which defaults to ttyUSB0.
 
 ## Usage
 

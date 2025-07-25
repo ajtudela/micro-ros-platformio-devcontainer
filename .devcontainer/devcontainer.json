@@ -27,6 +27,6 @@
         8008
     ],
     "mounts": [
-        "source=/dev/bus/usb,target=/dev/bus/usb,type=bind"
+        "source=/dev/ttyUSB0, target=/dev/ttyUSB0,type=bind"
     ]
 }
